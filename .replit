@@ -1,4 +1,4 @@
-entrypoint = "frogger.py"
+entrypoint = "Brown_Homework#7_PyGame.py"
 modules = ["python-3.11"]
 
 [nix]

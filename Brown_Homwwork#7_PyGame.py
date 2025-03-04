@@ -1,3 +1,9 @@
+"""
+Jaden Brown
+3/3/25
+Assignment #7
+Description: beginning the code on frogger game and initializing game loop. Making basic asset shapes for cars and frog, and designing the background for the game.
+"""
 import pygame
 #initialize pygame
 pygame.init()
