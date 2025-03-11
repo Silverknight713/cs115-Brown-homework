@@ -1,8 +1,8 @@
 """
 Jaden Brown
 3/3/25
-Assignment #7
-Description: beginning the code on frogger game and initializing game loop. Making basic asset shapes for cars and frog, and designing the background for the game.
+Assignment #8
+Description: Reworking the background of the game to fit segments, then adding movement and boundaries to keep the frog within the screen.
 """
 import pygame
 from pygame.constants import KEYDOWN
@@ -25,10 +25,10 @@ speed = 10
 cur_pos = [300,380]
 
 #Car Positions
-c1_pos = [0,45]
-c2_pos = [600,125]
-c3_pos = [0,225]
-c4_pos = [600,305]
+c1_pos = [0,45] #black car
+c2_pos = [600,125] #purple car
+c3_pos = [0,225] #red car
+c4_pos = [600,305] #blue car
 
 """game loop"""
 running = True
@@ -59,6 +59,7 @@ while running:
     c2_pos[0] = 600
   else:
     c1_pos[0] -= 10
+"""I have no idea why the first 2 cars don't move, I've looked through the code and have no idea what the issue might be"""
   #car3
   if c3_pos[0] > 600:
     c3_pos[0] = -100
