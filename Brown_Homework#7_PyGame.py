@@ -1,8 +1,8 @@
 """
 Jaden Brown
-3/3/25
-Assignment #8
-Description: Reworking the background of the game to fit segments, then adding movement and boundaries to keep the frog within the screen.
+3/12/25
+Assignment #9
+Description: Adding win/lose conditions, adding collision with cars, adding win/lose screens, adding functions
 """
 import pygame
 from pygame.constants import KEYDOWN
@@ -25,9 +25,9 @@ speed = 10
 cur_pos = [300,380]
 
 #Car Positions
-c1_pos = [0,45] #black car
+c1_pos = [-100,45] #black car
 c2_pos = [600,125] #purple car
-c3_pos = [0,225] #red car
+c3_pos = [-100,225] #red car
 c4_pos = [600,305] #blue car
 
 """game loop"""
@@ -53,13 +53,12 @@ while running:
   if c1_pos[0] > 600:
     c1_pos[0] = -100
   else:
-    c1_pos[0] += 10
+    c1_pos[0] += 15
   #car2
-  if c2_pos[0] < -200:
+  if c2_pos[0] < -100:
     c2_pos[0] = 600
   else:
-    c1_pos[0] -= 10
-"""I have no idea why the first 2 cars don't move, I've looked through the code and have no idea what the issue might be"""
+    c2_pos[0] -= 15
   #car3
   if c3_pos[0] > 600:
     c3_pos[0] = -100
@@ -81,6 +80,25 @@ while running:
     cur_pos[1] = 20
   if cur_pos[1] > height - 20:
     cur_pos[1] = height - 20
+
+  #Win Condition
+  if cur_pos[1] < 40:
+    print("You Win!")
+    running = False
+  #Lose Condition
+    #Car collision with frog
+  if cur_pos[0] > c1_pos[0] and cur_pos[0] < c1_pos[0] + 100 and cur_pos[1] > c1_pos[1] - 10 and cur_pos[1] < c1_pos[1] + 60:
+    print("YOU LOSE")
+    running = False
+  if cur_pos[0] > c2_pos[0] and cur_pos[0] < c2_pos[0] + 100 and cur_pos[1] > c2_pos[1] - 10 and cur_pos[1] < c2_pos[1] + 60:
+    print("YOU LOSE")
+    running = False
+  if cur_pos[0] > c3_pos[0] and cur_pos[0] < c3_pos[0] + 100 and cur_pos[1] > c3_pos[1] - 10 and cur_pos[1] < c3_pos[1] + 60:
+    print("YOU LOSE")
+    running = False
+  if cur_pos[0] > c4_pos[0] and cur_pos[0] < c4_pos[0] + 100 and cur_pos[1] > c4_pos[1] - 10 and cur_pos[1] < c4_pos[1] + 60:
+    print("YOU LOSE")
+    running = False
   
   """ draw to our screen """
   # clear screen
@@ -98,13 +116,18 @@ while running:
   
 
   #cars
-  pygame.draw.rect(screen, "black", pygame.Rect((c1_pos[0],c1_pos[1]), (100, 50)))
-  pygame.draw.rect(screen, "purple", pygame.Rect((c2_pos[0],c2_pos[1]), (200, 50)))
-  pygame.draw.rect(screen, "red", pygame.Rect((c3_pos[0],c3_pos[1]), (100, 50)))
-  pygame.draw.rect(screen, "blue", pygame.Rect((c4_pos[0],c4_pos[1]), (100, 50)))
+  for body in c1_pos:
+    pygame.draw.rect(screen, "black", pygame.Rect((c1_pos[0],c1_pos[1]), (100, 50)),body)
+  for body in c2_pos:
+    pygame.draw.rect(screen, "purple", pygame.Rect((c2_pos[0],c2_pos[1]), (100, 50)),body)
+  for body in c3_pos:
+    pygame.draw.rect(screen, "red", pygame.Rect((c3_pos[0],c3_pos[1]), (100, 50)),body)
+  for body in c4_pos:
+    pygame.draw.rect(screen, "blue", pygame.Rect((c4_pos[0],c4_pos[1]), (100, 50)),body)
 
   #frog
-  pygame.draw.circle(screen, "#0ba300", (cur_pos[0],cur_pos[1]), 20)
+  for body in cur_pos:
+    pygame.draw.circle(screen, "#0ba300", cur_pos, 20, body)
   
   # update screen
   pygame.display.flip()
