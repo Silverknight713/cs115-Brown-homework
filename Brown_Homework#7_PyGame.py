@@ -10,11 +10,6 @@ from pygame.constants import KEYDOWN
 #initialize pygame
 pygame.init()
 
-#Fonts
-system_fonts = pygame.font.get_fonts()
-print(system_fonts)
-myFont = pygame.font.SysFont(name=system_fonts[0], size=48, bold=True,italic=False)
-
 #window dimensions and display
 width = 600
 height = 400
@@ -108,7 +103,7 @@ while running:
     print("YOU LOSE")
     running = False
   
-  #Score system
+  #Score
   if cur_pos[1] < 40 and score < 1:
     score += 1
   if cur_pos[1] < 80 and score < 1:
@@ -129,8 +124,6 @@ while running:
     score += 1
   if cur_pos[1] < 400 and score < 1:
     score += 1
-  #Printing Score
-  
   """ draw to our screen """
   # clear screen
   screen.fill("white")
