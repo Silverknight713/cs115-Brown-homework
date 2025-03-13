@@ -10,6 +10,11 @@ from pygame.constants import KEYDOWN
 #initialize pygame
 pygame.init()
 
+#Fonts
+system_fonts = pygame.font.get_fonts()
+print(system_fonts)
+myFont = pygame.font.SysFont(name=system_fonts[0], size=48, bold=True,italic=False)
+
 #window dimensions and display
 width = 600
 height = 400
@@ -29,6 +34,9 @@ c1_pos = [-100,45] #black car
 c2_pos = [600,125] #purple car
 c3_pos = [-100,225] #red car
 c4_pos = [600,305] #blue car
+
+#score
+score = 0
 
 """game loop"""
 running = True
@@ -99,6 +107,29 @@ while running:
   if cur_pos[0] > c4_pos[0] and cur_pos[0] < c4_pos[0] + 100 and cur_pos[1] > c4_pos[1] - 10 and cur_pos[1] < c4_pos[1] + 60:
     print("YOU LOSE")
     running = False
+  
+  #Score system
+  if cur_pos[1] < 40 and score < 1:
+    score += 1
+  if cur_pos[1] < 80 and score < 1:
+    score += 1
+  if cur_pos[1] < 120 and score < 1:
+    score += 1
+  if cur_pos[1] < 160 and score < 1:
+    score += 1
+  if cur_pos[1] < 200 and score < 1:
+    score += 1
+  if cur_pos[1] < 240 and score < 1:
+    score += 1
+  if cur_pos[1] < 280 and score < 1:
+    score += 1
+  if cur_pos[1] < 320 and score < 1:
+    score += 1
+  if cur_pos[1] < 360 and score < 1:
+    score += 1
+  if cur_pos[1] < 400 and score < 1:
+    score += 1
+  #Printing Score
   
   """ draw to our screen """
   # clear screen
